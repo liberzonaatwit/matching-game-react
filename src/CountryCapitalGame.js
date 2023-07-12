@@ -22,8 +22,11 @@ export default function CountryCapitalGame({ data }) {
   };
 
   const handleButtonClick = (option) => {
-    if (selectedPair && selectedPair !== option) {
-      if (isPairCorrect(selectedPair, option)) {
+    if (selectedPair) {
+      if (selectedPair === option && !isPairCorrect(selectedPair, option)) {
+        setSelectedPair(null);
+        setWrongPair([]);
+      } else if (isPairCorrect(selectedPair, option)) {
         setMatchedPairs([...matchedPairs, selectedPair, option]);
         setSelectedPair(null);
       } else {
