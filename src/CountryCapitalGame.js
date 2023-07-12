@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./App.css";
 
 export default function CountryCapitalGame({ data }) {
   const [options, setOptions] = useState([]);
@@ -60,8 +61,10 @@ export default function CountryCapitalGame({ data }) {
       return (
         <button
           key={option}
-          style={buttonStyle}
-          className={isSelected ? "button-selected" : ""}
+          className={
+            (isSelected ? "button-selected" : "") +
+            (isWrongPair ? " wrong" : "")
+          }
           onClick={() => handleButtonClick(option)}
         >
           {option}
@@ -75,9 +78,11 @@ export default function CountryCapitalGame({ data }) {
   };
 
   return (
-    <div>
-      {renderButtons()}
-      {isGameCompleted() && <p>Congratulations!</p>}
-    </div>
+    <body>
+      <div className="container">
+        {renderButtons()}
+        {isGameCompleted() && <p>Congratulations!</p>}
+      </div>
+    </body>
   );
 }
