@@ -46,24 +46,20 @@ export default function CountryCapitalGame({ data }) {
 
   const renderButtons = () => {
     return options.map((option) => {
-      if (matchedPairs.includes(option)) {
-        return null;
-      }
+      // if (matchedPairs.includes(option)) {
+      //   return null;
+      // }
 
       const isSelected = selectedPair === option;
       const isWrongPair = wrongPair.includes(option);
-      const buttonStyle = isSelected
-        ? { backgroundColor: "#0000ff" }
-        : isWrongPair
-        ? { backgroundColor: "#ff0000" }
-        : {};
 
       return (
         <button
           key={option}
           className={
             (isSelected ? "button-selected" : "") +
-            (isWrongPair ? " wrong" : "")
+            (isWrongPair ? " wrong" : "") +
+            (matchedPairs.includes(option) ? " matched" : "")
           }
           onClick={() => handleButtonClick(option)}
         >
@@ -79,10 +75,11 @@ export default function CountryCapitalGame({ data }) {
 
   return (
     <body>
-      <div className="container">
-        {renderButtons()}
-        {isGameCompleted() && <p>Congratulations!</p>}
-      </div>
+      {renderButtons() ? (
+        <p className="congrats">Congratulations!</p>
+      ) : (
+        <div className="container">{isGameCompleted()}</div>
+      )}
     </body>
   );
 }
