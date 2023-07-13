@@ -100,3 +100,11 @@ body {
     rotate: 360deg;
   }
 }
+
+/* Mobile Styling */
+@media only screen and (max-width: 480px) {
+  .container {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+  }
+}

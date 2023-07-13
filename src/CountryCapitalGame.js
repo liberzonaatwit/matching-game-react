@@ -75,10 +75,10 @@ export default function CountryCapitalGame({ data }) {
 
   return (
     <body>
-      {renderButtons() ? (
+      {isGameCompleted() ? (
         <p className="congrats">Congratulations!</p>
       ) : (
-        <div className="container">{isGameCompleted()}</div>
+        <div className="container">{renderButtons()}</div>
       )}
     </body>
   );
