@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import confetti from "canvas-confetti";
+import Confetti from "./Confetti";
 
 export default function CountryCapitalGame({ data }) {
   const [options, setOptions] = useState([]);
@@ -74,12 +76,17 @@ export default function CountryCapitalGame({ data }) {
   };
 
   return (
-    <body>
+    <main>
       {isGameCompleted() ? (
-        <p className="congrats">Congratulations!</p>
+        <>
+          <p className="congrats">Congratulations!</p>
+          <Confetti start={isGameCompleted()} />
+        </>
       ) : (
-        <div className="container">{renderButtons()}</div>
+        <>
+          <div className="container">{renderButtons()}</div>
+        </>
       )}
-    </body>
+    </main>
   );
 }
